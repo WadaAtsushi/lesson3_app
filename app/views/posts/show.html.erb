@@ -1,0 +1,21 @@
+<div class="container mx-auto" style="margin-top: 40px">
+<h1><%= @user.email %>の投稿です</h1>
+
+<div class="card">
+    <div class="card-header">
+      投稿詳細
+    </div>
+    <div class="card-body">
+      <div class="post-image">
+        <img src="<%= "/post_images/#{@post.image_post}" %>">
+      </div>
+      <div class="card-text">
+        <h5 class="card-title">Title：<%= @post.title %></h5>
+        <h6 class="card-text">Event：<%= @post.event %></h5>
+        <p class="card-text"><%= @post.content %></p>
+        <a href="<%= "/posts/#{@post.id}/edit"%>" class="btn btn-primary" >編集</a>
+        <a href="<%= "/posts/#{@post.id}/destroy"%>" class="btn btn-primary" >削除</a>
+      </div>
+    </div>
+</div>
+</div>

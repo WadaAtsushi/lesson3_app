@@ -1,0 +1,26 @@
+<div class="container mx-auto" style="margin-top: 40px">
+<h1>会員登録</h1>
+<%= form_tag("/users/create") do %>
+    <form>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Name</label>
+            <input name="name" class="form-control" placeholder="sample hanako" value="<%= @user.name %>">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Emailaddress</label>
+            <input name="email" class="form-control" placeholder="sample@sample.com" value="<%= @user.email %>">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Pssword</label>
+            <input name="password" type="password" class="form-control">
+        </div> 
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Pssword再確認</label>
+            <input name="password_check" type="password" class="form-control">
+        </div> 
+        <div>
+            <input class="btn btn-primary" type="submit" value="登録" >
+        </div>
+    </form>
+<% end %>
+</div>
