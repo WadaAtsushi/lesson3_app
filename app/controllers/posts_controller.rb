@@ -7,14 +7,6 @@ class PostsController < ApplicationController
   end
 
   def create
-    # @post = Post.new(
-    #   title: params[:title],
-    #   event: params[:event],
-    #   content: params[:content],
-    #   user_i: @current_user.id,
-    #   image_post:"sample.jpg"
-    #  )
-
      @post = Post.new(post_params)
      @post.user_id = @current_user.id
      @post.image_post ="sample.jpg"
@@ -27,7 +19,7 @@ class PostsController < ApplicationController
         @post.save
       end
       flash[:notice] = "投稿を確認しました"
-      redirect_to("/posts/index")
+      redirect_to posts_index_path
     else
       render("posts/new")
     end
@@ -66,7 +58,7 @@ class PostsController < ApplicationController
 
     if @post.save
       flash[:notice] = "編集しました"
-      redirect_to("/posts/index")
+      redirect_to posts_index_path
     else
       render("posts/#{@post.id}/edit")
     end
@@ -76,7 +68,7 @@ class PostsController < ApplicationController
     @post = Post.find_by(id: params[:id])
     @post.destroy
     flash[:notice] = "削除しました"
-    redirect_to("/posts/index")
+    redirect_to posts_index_path
   end
 
   private

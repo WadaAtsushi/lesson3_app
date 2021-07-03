@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     if @user
       session[:user_id] = @user.id
       flash[:notice] = "ログインしました"
-      redirect_to("/posts/index")
+      redirect_to posts_index_path
     else
       flash[:notice] = "入力が間違っています"
       render("users/login_form")
@@ -25,7 +25,7 @@ class UsersController < ApplicationController
   def logout
     session[:user_id] = nil
     flash[:notice] = "ログアウトしました"
-    redirect_to("/")
+    redirect_to top_path
   end
 
 
@@ -42,7 +42,7 @@ class UsersController < ApplicationController
       if @user.save
         session[:user_id] = @user.id
         flash[:notice] = "新規登録しました"
-        redirect_to("/posts/index")
+        redirect_to posts_index_path
       else
         flash[:notice] = "入力内容が間違っています"
         render("users/signin")

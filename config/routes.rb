@@ -9,11 +9,11 @@ Rails.application.routes.draw do
   post 'users/create' => 'users#create'
   get 'users/index' => 'users#index'
 
-  get '/' => 'posts#top'
+  get '/', to: 'posts#top', as: "top"
   get 'posts/new' => 'posts#new'
   post 'posts/create' => 'posts#create'
   post 'posts/:id/update' => 'posts#update'
-  get 'posts/index' => 'posts#index'
+  get 'posts/index', to: 'posts#index', as: "posts_index"   #get "url", to: "controllername#method", as: "name"
   get 'posts/event_index' => 'posts#event_index'
   get 'posts/:id/show' => 'posts#show'
   get 'posts/:id/edit' => 'posts#edit'
