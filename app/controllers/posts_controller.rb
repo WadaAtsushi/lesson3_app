@@ -7,13 +7,17 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(
-      title: params[:title],
-      event: params[:event],
-      content: params[:content],
-      user_id: @current_user.id,
-      image_post:"sample.jpg"
-    )
+    # @post = Post.new(
+    #   title: params[:title],
+    #   event: params[:event],
+    #   content: params[:content],
+    #   user_i: @current_user.id,
+    #   image_post:"sample.jpg"
+    #  )
+
+     @post = Post.new(post_params)
+     @post.user_id = @current_user.id
+     @post.image_post ="sample.jpg"
 
     if @post.save
       if params[:image]
@@ -49,9 +53,10 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find_by(id: params[:id])
-    @post.title = params[:title]
-    @post.content = params[:content]
-    @post.event = params[:event]
+    @post.update_attributes(post_params)
+    # @post.title = params[:title]
+    # @post.content = params[:content]
+    # @post.event = params[:event]
     
     if params[:image]
       @post.image_post = "#{@post.id}.jpg"
@@ -73,4 +78,10 @@ class PostsController < ApplicationController
     flash[:notice] = "削除しました"
     redirect_to("/posts/index")
   end
+
+  private
+    def post_params
+      params.permit(:title, :event, :content) #.require(:post)
+    end
+
 end

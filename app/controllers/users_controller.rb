@@ -1,7 +1,10 @@
 class UsersController < ApplicationController
   
   def login
-    @user = User.find_by(email: params[:email], password: params[:password])
+    @user = User.find_by(
+      email: params[:email], 
+      password: params[:password]
+    )
     if @user
       session[:user_id] = @user.id
       flash[:notice] = "ログインしました"
@@ -27,11 +30,11 @@ class UsersController < ApplicationController
 
 
   def create
-    @user = User.new(
-      name: params[:name],
-      email: params[:email],
-      password: params[:password]
-    )
+    @user = User.new(user_params)
+    #   name: params[:name],
+    #   email: params[:email],
+    #   password: params[:password]
+    # )
     if @user.password != params[:password_check]
       flash[:notice] = "パスワードが一致していません"
       render("users/signin")
@@ -50,5 +53,10 @@ class UsersController < ApplicationController
   def index
     @user = User.find_by(id: session[:user_id])
   end
+
+  private
+    def user_params
+      params.permit(:name, :email, :password) 
+    end
 
 end
