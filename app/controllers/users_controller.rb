@@ -31,22 +31,14 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    #   name: params[:name],
-    #   email: params[:email],
-    #   password: params[:password]
-    # )
-    if @user.password != params[:password_check]
-      flash[:notice] = "パスワードが一致していません"
-      render("users/signin")
+    
+    if @user.save
+      session[:user_id] = @user.id
+      flash[:notice] = "新規登録しました"
+      redirect_to posts_index_path
     else
-      if @user.save
-        session[:user_id] = @user.id
-        flash[:notice] = "新規登録しました"
-        redirect_to posts_index_path
-      else
-        flash[:notice] = "入力内容が間違っています"
-        render("users/signin")
-      end
+      flash[:notice] = "入力内容が間違っています"
+      render("users/signin")
     end
   end
 
@@ -56,7 +48,7 @@ class UsersController < ApplicationController
 
   private
     def user_params
-      params.permit(:name, :email, :password) 
+      params.require(:user).permit(:name, :email, :password, :password_confirmation) 
     end
 
 end

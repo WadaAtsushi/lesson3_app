@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   post 'login' => 'users#login'
   get 'logout' => 'users#logout'
   get 'users/signin' => 'users#signin'
-  post 'users/create' => 'users#create'
+  post 'users/create', to: 'users#create', as: "signup"
   get 'users/index' => 'users#index'
 
   get '/', to: 'posts#top', as: "top"
