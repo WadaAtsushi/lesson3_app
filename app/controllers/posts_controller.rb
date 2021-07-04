@@ -45,10 +45,7 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find_by(id: params[:id])
-    @post.update_attributes(post_params)
-    # @post.title = params[:title]
-    # @post.content = params[:content]
-    # @post.event = params[:event]
+    @post.update(post_params)
     
     if params[:image]
       @post.image_post = "#{@post.id}.jpg"
@@ -73,7 +70,11 @@ class PostsController < ApplicationController
 
   private
     def post_params
-      params.permit(:title, :event, :content) #.require(:post)
+      params.require(:post).permit(:title, :event, :content) 
     end
+  # private
+  #   def image_params
+  #     params.permit(:image)
+  #   end
 
 end

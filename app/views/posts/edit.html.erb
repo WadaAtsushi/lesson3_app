@@ -1,6 +1,33 @@
 <div class="container mx-auto" style="margin-top: 40px">
 <h1>「<%= @post.title %>」の編集ページ</h1>
+
+<%= form_for(@post, url: edit_post_path, html:{multipart: true}) do |f| %>
   
+  <div class="post-new-label">
+  <%= f.label :title%>
+  </div>
+    <%= f.text_field :title, class: "form-control" %>
+  <div class="post-new-label">
+  <%= f.label :"イベント" %>
+  </div>
+    <%= f.select :event, [["その他","その他"],["お食い初め","お食い初め"],["ハーフバースデイ","ハーフバースデイ"],["バースデイフォト","バースデイフォト"],["桃の節句","桃の節句"],["七五三（３歳）","七五三（３歳）"],["七五三（５歳）","七五三（５歳）"],["七五三（７歳】","七五三（７歳】"],["1/2成人式","1/2成人式"]],include_blank: "選択してください",　class: "form-control" %>
+  <div class="post-new-label">
+  <%= f.label :content %>
+  </div>
+    <%= f.text_area :content, class: "form-control" %>
+  <div class="post-new-label">
+  <%= f.label :image %>
+  </div>
+    <%= f.file_field :image %>
+  <div class="post-new-label">
+  <%= f.submit "編集", class: "btn btn-primary post-new-label" %>
+  <div class="post-new-label">
+  <% end %>
+
+
+
+
+<!--
 <%= form_tag("/posts/#{@post.id}/update",{multipart: true}) do %>
   <form>
     <div class="mb-3">
@@ -31,7 +58,7 @@
     <button class="btn btn-primary" type="submit" >編集</button>
   </form>
 <% end %>
-</div>
+</div> -->
   
   
   

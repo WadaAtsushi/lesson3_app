@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   post 'likes/:post_id/destroy' => 'likes#destroy'
   
   get 'login' => 'users#login_form'
-  post 'login' => 'users#login'
+  post 'userlogin',to:'users#login',as: "user_login"
   get 'logout' => 'users#logout'
   get 'users/signin' => 'users#signin'
   post 'users/create', to: 'users#create', as: "signup"
@@ -11,8 +11,8 @@ Rails.application.routes.draw do
 
   get '/', to: 'posts#top', as: "top"
   get 'posts/new' => 'posts#new'
-  post 'posts/create' => 'posts#create'
-  post 'posts/:id/update' => 'posts#update'
+  post 'posts/create', to: 'posts#create', as: "new_post"
+  patch 'posts/:id/update', to: 'posts#update', as: "edit_post"
   get 'posts/index', to: 'posts#index', as: "posts_index"   #get "url", to: "controllername#method", as: "name"
   get 'posts/event_index' => 'posts#event_index'
   get 'posts/:id/show' => 'posts#show'

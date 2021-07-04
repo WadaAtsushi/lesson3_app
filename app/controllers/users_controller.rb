@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
   
   def login
-    @user = User.find_by(
-      email: params[:email], 
-      password: params[:password]
-    )
+    @user = User.find_by(login_params)
+    #   email: params[:email], 
+    #   password: params[:password]
+    # )
     if @user
       session[:user_id] = @user.id
       flash[:notice] = "ログインしました"
@@ -16,6 +16,7 @@ class UsersController < ApplicationController
   end
 
   def login_form
+    @user = User.new
   end
 
   def signin
@@ -50,5 +51,9 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation) 
     end
-
+  
+  private
+    def login_params
+      params.permit(:email, :password) 
+    end
 end
