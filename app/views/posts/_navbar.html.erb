@@ -1,0 +1,37 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+    <a class="navbar-brand" href="/">メイン</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+        <% if current_user %>
+            <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/posts/new">新規投稿</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="/posts/index">投稿一覧</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="/posts/event_index">イベント一覧</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="/users/index"><%= "#{current_user.name}の投稿一覧" %></a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="/logout">ログアウト</a>
+            </li>
+        <% else %>
+
+            <li class="nav-item">
+            <a class="nav-link" href="/users/signin">会員登録</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="/login">ログイン</a>
+            </li>
+        <% end %>
+        </ul>
+    </div>
+    </div>
+</nav>

@@ -15,7 +15,9 @@
   </head>
   <body>
   
-  <%= render 'posts/header', current_user: @current_user %>
+  <header>
+    <%= render 'posts/navbar', current_user: @current_user %>
+  </header>
 
     <% if flash[:notice] %>
       <div class="flash">
