@@ -8,27 +8,27 @@
         <ul class="navbar-nav">
         <% if current_user %>
             <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/posts/new">新規投稿</a>
+                <%= link_to("新規投稿", post_new_path, class: "nav-link active") %>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="/posts/index">投稿一覧</a>
+                <%= link_to("投稿一覧", posts_index_path, class: "nav-link active") %>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="/posts/event_index">イベント一覧</a>
+                <%= link_to("イベント一覧", event_index_path, class: "nav-link active") %>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="/users/index"><%= "#{current_user.name}の投稿一覧" %></a>
+                <%= link_to("#{current_user.name}の投稿一覧", user_index_path, class: "nav-link active") %>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="/logout">ログアウト</a>
+                <%= link_to("ログアウト", logout_path, class: "nav-link active") %>
             </li>
         <% else %>
 
             <li class="nav-item">
-            <a class="nav-link" href="/users/signin">会員登録</a>
+                <%= link_to("会員登録", users_signin_path, class: "nav-link") %>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="/login">ログイン</a>
+                <%= link_to("ログイン", login_path, class: "nav-link") %>
             </li>
         <% end %>
         </ul>
