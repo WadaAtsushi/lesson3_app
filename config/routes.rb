@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  post 'event/search', to: 'posts#event_search', as:"event_search"
+
   post 'likes/:post_id/create' => 'likes#create'
   post 'likes/:post_id/destroy' => 'likes#destroy'
   
@@ -11,7 +13,7 @@ Rails.application.routes.draw do
 
   get '/', to: 'posts#top', as: "top"
   get 'posts/new',to: 'posts#new', as: 'post_new'
-  post 'posts/create', to: 'posts#create', as: 'new_post'
+  post 'posts/create', to: 'posts#create', as: 'create_post'
   patch 'posts/:id/update', to: 'posts#update', as: 'edit_post'
   get 'posts/index', to: 'posts#index', as: 'posts_index'   #get "url", to: "controllername#method", as: "name"
   get 'posts/event_index', to: 'posts#event_index', as: 'event_index'

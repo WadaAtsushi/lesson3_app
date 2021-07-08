@@ -13,9 +13,9 @@ class PostsController < ApplicationController
      @post.image_post ="sample.jpg"
 
     if @post.save
-      if params[:image]
+      if params[:psot][:image]
         @post.image_post = "#{@post.id}.jpg"
-        image = params[:image]
+        image = params[:post][:image]
         File.binwrite("public/post_images/#{@post.image_post}", image.read)
         @post.save
       end
@@ -32,7 +32,7 @@ class PostsController < ApplicationController
   end
 
   def event_index
-    @posts = Post.all
+    @post_search = Post.new
   end
 
   def show
@@ -48,9 +48,9 @@ class PostsController < ApplicationController
     @post = Post.find_by(id: params[:id])
     @post.update(post_params)
     
-    if params[:image]
+    if params[:post][:image]
       @post.image_post = "#{@post.id}.jpg"
-      image = params[:image]
+      image = params[:post][:image]
       File.binwrite("public/post_images/#{@post.image_post}", image.read)
     end
 
@@ -69,13 +69,19 @@ class PostsController < ApplicationController
     redirect_to posts_index_path
   end
 
+  def event_search
+    @post_search = Post.new
+    @posts = Post.where(event_id: params[:post][:event_id])
+    render("posts/event_index")
+  end
+
   private
     def post_params
-      params.require(:post).permit(:title, :event, :content) 
+      params.require(:post).permit(:title, :event_id, :content) 
     end
-  # private
-  #   def image_params
-  #     params.permit(:image)
-  #   end
+  
+    def image_params
+       params.permit(:image)
+    end
 
 end
