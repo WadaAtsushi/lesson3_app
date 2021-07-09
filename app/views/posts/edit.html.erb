@@ -3,25 +3,16 @@
 
 <%= form_for(@post, url: edit_post_path, multipart: true) do |f| %>
   
-  <div class="post-new-label">
-  <%= f.label :title%>
-  </div>
-    <%= f.text_field :title, class: "form-control" %>
-  <div class="post-new-label">
-  <%= f.label :"イベント" %>
-  </div>
-    <%= f.collection_select :event_id, Event.all, :id, :event_name, include_blank: "選択してください" %>
-  <div class="post-new-label">
-  <%= f.label :content %>
-  </div>
-    <%= f.text_area :content, class: "form-control" %>
-  <div class="post-new-label">
-  <%= f.label :image %>
-  </div>
-    <%= f.file_field :image %>
-  <div class="post-new-label">
-  <%= f.submit "編集", class: "btn btn-primary post-new-label" %>
-  <div class="post-new-label">
-  <% end %>
+  <%= tag.div f.label :title, class:"post-new-label" %>
+  <%= f.text_field :title, class: "form-control" %>
+  <%= tag.div f.label :"イベント", class:"post-new-label" %>
+  <%= f.collection_select :event_id, Event.all, :id, :event_name, include_blank: "選択してください" %>
+  <%= tag.div f.label :content, class:"post-new-label" %>
+  <%= f.text_area :content, class: "form-control" %>
+  <%= tag.div f.label :image, class:"post-new-label" %>
+  <%= f.file_field :image, class:"post-new-label" %>
+  <%= tag.div f.submit "編集", class: "btn btn-primary post-new-label" %>
+
+<% end %>
 
 

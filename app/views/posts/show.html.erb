@@ -1,21 +1,18 @@
 <div class="container mx-auto" style="margin-top: 40px">
-<h1><%= @user.email %>の投稿です</h1>
-
-<div class="card">
-    <div class="card-header">
-      投稿詳細
-    </div>
+ <%= tag.h1 "#{@user.email}の投稿です" %>
+  <div class="card">
+    <%= tag.p "投稿詳細", class:"card-header" %>
     <div class="card-body">
       <div class="post-image">
-        <img src="<%= "/post_images/#{@post.image_post}" %>">
+        <%= image_tag @post.image_post.url %>
       </div>
       <div class="card-text">
-        <h5 class="card-title">Title：<%= @post.title %></h5>
-        <h6 class="card-text">Event：<%= @post.event %></h5>
-        <p class="card-text"><%= @post.content %></p>
-        <a href="<%= "/posts/#{@post.id}/edit"%>" class="btn btn-primary" >編集</a>
-        <a href="<%= "/posts/#{@post.id}/destroy"%>" class="btn btn-primary" >削除</a>
+        <%= tag.p "タイトル： #{@post.title}", class:"card-title" %>
+        <%= tag.p "イベント： #{@post.event}", class:"card-text" %>
+        <%= tag.p "投稿内容： #{@post.content}", class:"card-text" %>
+        <%= link_to("編集", post_edit_path(@post.id), class: "btn btn-primary") %>
+        <%= link_to("削除", post_destroy_path(@post.id), class: "btn btn-primary") %>
       </div>
     </div>
-</div>
+  </div>
 </div>

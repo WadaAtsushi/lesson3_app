@@ -1,21 +1,19 @@
 <div class="container mx-auto" style="margin-top: 40px">
-<h1><%= @user.email %>の投稿一覧</h1>
+  <%= tag.h1 "#{@user.email}の投稿一覧" %>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">タイトル</th>
-      <th scope="col">作成日</th>
-    </tr>
-  </thead>
+    <table class="table">
+      <thead>
+        <%= tag.tr %>
+          <%= tag.th "タイトル" %>
+          <%= tag.th "投稿日" %>
+      </thead>
 
-  <tbody>
-  <% @user.posts.each do |post| %>
-    <tr>
-      <td><%= link_to(post.title,"/posts/#{post.id}/show") %></td>
-      <td><%= post.created_at %></td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
+      <tbody>
+      <% @user.posts.each do |post| %>
+        <%= tag.tr %>
+          <%= tag.td link_to(post.title, posts_show_path(post.id)) %>
+          <%= tag.td post.created_at %></td>
+      <% end %>
+      </tbody>
+    </table>
 </div>

@@ -10,15 +10,9 @@ class PostsController < ApplicationController
      @post = @current_user.posts.build(post_params)
     #  @post = Post.new(post_params)
     #  @post.user_id = @current_user.id
-     @post.image_post ="sample.jpg"
+     
 
     if @post.save
-      if params[:psot][:image]
-        @post.image_post = "#{@post.id}.jpg"
-        image = params[:post][:image]
-        File.binwrite("public/post_images/#{@post.image_post}", image.read)
-        @post.save
-      end
       flash[:notice] = "投稿を確認しました"
       redirect_to posts_index_path
     else
@@ -77,11 +71,7 @@ class PostsController < ApplicationController
 
   private
     def post_params
-      params.require(:post).permit(:title, :event_id, :content) 
-    end
-  
-    def image_params
-       params.permit(:image)
+      params.require(:post).permit(:title, :event_id, :content, :image_post) 
     end
 
 end
