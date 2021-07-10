@@ -9,6 +9,7 @@ class UsersController < ApplicationController
       redirect_to posts_index_path
     else
       flash[:notice] = "入力が間違っています"
+      @user = User.new
       render("users/login_form")
     end
   end

@@ -1,5 +1,5 @@
 <div class="container mx-auto" style="margin-top: 40px">
- <%= tag.h1 "#{@user.email}の投稿です" %>
+ <%= tag.h1 "#{@post.user.name}の投稿です" %>
   <div class="card">
     <%= tag.p "投稿詳細", class:"card-header" %>
     <div class="card-body">
@@ -8,7 +8,7 @@
       </div>
       <div class="card-text">
         <%= tag.p "タイトル： #{@post.title}", class:"card-title" %>
-        <%= tag.p "イベント： #{@post.event}", class:"card-text" %>
+        <%= tag.p "イベント： #{@post.event.event_name}", class:"card-text" %>
         <%= tag.p "投稿内容： #{@post.content}", class:"card-text" %>
         <%= link_to("編集", post_edit_path(@post.id), class: "btn btn-primary") %>
         <%= link_to("削除", post_destroy_path(@post.id), class: "btn btn-primary") %>

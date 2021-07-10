@@ -7,16 +7,15 @@ class PostsController < ApplicationController
   end
 
   def create
-     @post = @current_user.posts.build(post_params)
-    #  @post = Post.new(post_params)
-    #  @post.user_id = @current_user.id
-     
+    @post = @current_user.posts.build(post_params)
+    #@post = Post.new(post_params)
+    #@post.user_id = @current_user.id
 
     if @post.save
-      flash[:notice] = "投稿を確認しました"
-      redirect_to posts_index_path
+       flash[:notice] = "投稿を確認しました"
+       redirect_to posts_index_path
     else
-      render("posts/new")
+       render("posts/new")
     end
     
   end
@@ -30,8 +29,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find_by(id: params[:id])
-    @user = User.find_by(id: @post.user_id)
+    @post = Post.find(params[:id])
   end
 
   def edit

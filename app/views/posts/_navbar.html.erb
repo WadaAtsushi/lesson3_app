@@ -15,8 +15,8 @@
             <%= link_to("#{current_user.name}の投稿一覧", user_index_path, class:"nav-item", class: "nav-link active") %>
             <%= link_to("ログアウト", logout_path, class:"nav-item", class: "nav-link active") %>
         <% else %>
-            <%= link_to("会員登録", users_signin_path, class:"nav-item", class: "nav-link") %>
-            <%= link_to("ログイン", login_path, class:"nav-item", class: "nav-link") %>
+            <%= link_to("会員登録", users_signin_path, class:"nav-item", class: "nav-link activ") %>
+            <%= link_to("ログイン", login_path, class:"nav-item", class: "nav-link activ") %>
         <% end %>
         </ul>
     </div>

@@ -4,7 +4,7 @@ class Post < ApplicationRecord
     validates :user_id, {presence: true}
 
     belongs_to :user
-    belongs_to :event
+    belongs_to :event, optional: true
 
     mount_uploader :image_post, ImageUploader
 end

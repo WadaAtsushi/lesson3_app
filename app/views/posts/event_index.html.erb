@@ -1,11 +1,12 @@
 <div class="container mx-auto" style="margin-top: 40px">
 <h1>イベント別の投稿一覧</h1>
 
-
-<%= form_for(@post_search, url: event_search_path) do |f| %>
-  <%= tag.p f.collection_select(:event_id, Event.all, :id, :event_name, include_blank: "イベントを選択してください")%>
-  <%= tag.p f.submit"検索", class: "btn btn-primary post-new-label" %>
-<% end %>
+<div class="event_search">
+  <%= form_for(@post_search, url: event_search_path) do |f| %>
+    <%= tag.p f.collection_select(:event_id, Event.all, :id, :event_name, include_blank: "イベントを選択してください")%>
+    <%= tag.p f.submit"検索", class: "btn btn-primary " %>
+  <% end %>
+</div>
 
 <table class="table">
   <thead>
