@@ -8,24 +8,38 @@
   <% end %>
 </div>
 
-<table class="table">
-  <thead>
-    <%= tag.tr %>
-      <%= tag.th "タイトル" %>
-      <%= tag.th "投稿者" %>
-      <%= tag.th "投稿日" %>
-
-  </thead>
-
-  <tbody>
-    <% if @posts %>
-      <% @posts.each do |post| %>
-        <%= tag.tr %>
-          <%= tag.td link_to(post.title,"/posts/#{post.id}/show") %>
-          <%= tag.td post.user.name %>
-          <%= tag.td post.created_at %>
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+  <% if @posts %>
+    <% @posts.each do |post| %>
+      <% if post.del_flag != 1 %>
+        <div class="col">
+          <div class="card shadow-sm">
+            <%= image_tag post.image_post.url class:"bd-placeholder-img card-img-top" %>
+            <div class="card-body">
+              <%= link_to((tag.h4 "タイトル：#{post.title}"), posts_show_path(post.id), {class:"card-title"}) %>
+              <%= tag.p "投稿者：#{post.user.name}", class:"card-text" %>
+              <%= tag.p "投稿日：#{post.created_at}", class:"card-text" %>
+              
+              <div class = "likes">
+                <% if Like.find_by(user_id: @current_user.id, post_id: post.id) %>
+                  <%= link_to((tag.span class: "fa fa-heart like-btn-unlike"), like_destroy_path(post.id), {method:"post"}) %>  
+                <% else %>
+                  <%= link_to((tag.span class: "fa fa-heart like-btn"), like_create_path(post.id), {method:"post"}) %>
+                <% end %>
+                <%= Like.where(post_id: post.id).count %>
+              </div>
+            </div>
+          </div>
+        </div>
       <% end %>
     <% end %>
-  </tbody>
+  <% end %>
+</div>
+
+
+
+
+
+
 
   

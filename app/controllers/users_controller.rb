@@ -23,7 +23,7 @@ class UsersController < ApplicationController
   end
 
   def logout
-    session[:user_id] = nil
+    reset_session
     flash[:notice] = "ログアウトしました"
     redirect_to top_path
   end

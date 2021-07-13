@@ -10,9 +10,10 @@
 
       <tbody>
       <% @user.posts.each do |post| %>
-        <%= tag.tr %>
-          <%= tag.td link_to(post.title, posts_show_path(post.id)) %>
-          <%= tag.td post.created_at %></td>
+        <% if post.del_flag != 1 %>
+          <%= tag.tr %>
+            <%= tag.td link_to(post.title, posts_show_path(post.id)) %>
+            <%= tag.td post.created_at %></td>
       <% end %>
       </tbody>
     </table>
