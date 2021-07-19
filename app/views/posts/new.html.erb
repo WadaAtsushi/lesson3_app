@@ -7,10 +7,10 @@
     <%= tag.div f.label :"イベント", class:"post-new-label" %>
     <%= f.collection_select :event_id, Event.all, :id, :event_name, {include_blank: "選択してください"},{class: "form-control input-sm"} %>
     <%= tag.div f.label :content, class: "post-new-label" %>
-    <%= f.text_area :content, class: "form-control" %>
+    <%= f.text_area :content, class: "form-control"%>
     <%= tag.div f.label :image, class: "post-new-label" %>
     <%= f.file_field :image_post %>
     <%= tag.div f.submit"投稿", class: "btn btn-primary post-new-label" %>
 <% end %>
-
+</div>
 

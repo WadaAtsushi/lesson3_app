@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  post 'comments/:post_id/create', to: 'comments#create',  as: 'comment_create'
+  
   post           'event/search', to: 'posts#event_search',    as:'event_search'
 
   post  'likes/:post_id/create', to: 'likes#create',          as:'like_create'
@@ -17,7 +19,7 @@ Rails.application.routes.draw do
   patch      'posts/:id/update', to: 'posts#update',          as: 'edit_post'
   get             'posts/index', to: 'posts#index',           as: 'posts_index'   #get "url", to: "controllername#method", as: "name"
   get       'posts/event_index', to: 'posts#event_index',     as: 'event_index'
-  get          'posts/:id/show', to: 'posts#show',            as: 'posts_show'
+  get          'posts/:id/show', to: 'posts#show',            as: 'posts_shouserw'
   get          'posts/:id/edit', to: 'posts#edit',            as: 'post_edit'
   get       'posts/:id/destroy', to: 'posts#destroy',         as: 'post_destroy'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
